@@ -1,0 +1,39 @@
+body {  
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+   height: 100%;
+   margin:0;
+   padding:0;
+}
+
+#preview {
+  padding:25px;
+  background-color: #F9F9F9;
+  height: 45%;
+  max-height: 45%;
+  overflow-y: scroll;
+}
+
+#input {
+  height: 45%;
+  width: 100%;
+}
+
+p code {
+  padding: 1px;
+  background-color: #E0E0E0;
+}
+
+/* 
+pre code{
+  display: inline-block;
+  background-color: #E0E0E0;
+  padding: 3px;
+  border-radius: 2px;
+} */
