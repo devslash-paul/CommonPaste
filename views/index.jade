@@ -1,6 +1,10 @@
 extends layout
 
+block head
+  script(src='/javascripts/main.js')
+
 block content
-  
-  textarea#input
+  form(action="/submit", method="post")
+    textarea#input(name="data")
+    input#submit(type="submit")
   #preview
