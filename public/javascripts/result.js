@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', onLoad, false);
 
 function onLoad() {
     inp = document.getElementById("hiddenText")
-    result = writer.render(reader.parse(inp.innerHTML))
+    result = writer.render(reader.parse(inp.getAttribute("value")))
     document.getElementById('render').innerHTML = result
     Prism.highlightAll();
 }
