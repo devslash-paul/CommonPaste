@@ -1,3 +1,7 @@
+if (typeof(PhusionPassenger) != 'undefined') {
+    PhusionPassenger.configure({ autoInstall: false });
+}
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -55,6 +59,12 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
+
+if (typeof(PhusionPassenger) != 'undefined') {
+    app.listen('passenger');
+} else {
+    app.listen(3000);
+}
 
 
 module.exports = app;
