@@ -7,6 +7,7 @@ router.get('/:id', function(req, res, next) {
     Paste.findById(req.params.id, function(err, doc){
         if(err) return err
 
+        doc.title = "CommonPaste";
         res.render("result", doc)
     })
 });
