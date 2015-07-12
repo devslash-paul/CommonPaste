@@ -4,6 +4,7 @@ body {
 
 * {
   box-sizing: border-box;
+  word-wrap: break-word;
 }
 
 html, body {
@@ -40,6 +41,13 @@ form {
   padding:25px;
   width:50%;
   height:100%;
+}
+
+blockquote{
+  background: #EDEDED;
+  border-left: 4px solid #ccc;
+  margin: 0.5em 10px;
+  padding: 1px 12px;
 }
 
 p code {
