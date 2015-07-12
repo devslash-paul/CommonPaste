@@ -6,8 +6,7 @@ document.addEventListener('DOMContentLoaded', onLoad, false);
 document.addEventListener('keyup', update, false);
 
 function onLoad() {
-    document.getElementById("preview").innerHTML = result
-    inp = document.getElementById("input")
+    inp = document.getElementById("input");
 }
 
 function update() {
