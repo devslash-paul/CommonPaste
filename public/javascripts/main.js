@@ -1,13 +1,11 @@
 var reader = new commonmark.Parser();
 var writer = new commonmark.HtmlRenderer();
-var parsed = reader.parse("Hello *world*")
-var result = writer.render(parsed);
-var inp
+var inp;
 
-document.addEventListener('DOMContentLoaded', onload, false);
+document.addEventListener('DOMContentLoaded', onLoad, false);
 document.addEventListener('keyup', update, false);
 
-function onload() {
+function onLoad() {
     document.getElementById("preview").innerHTML = result
     inp = document.getElementById("input")
 }
