@@ -1,7 +1,8 @@
 var mongoose = require('mongoose');
 
 var pasteSchema = mongoose.Schema({
-    text: String
+    text: String,
+    css: String
 });
 
 var Paste = mongoose.model('paste', pasteSchema);

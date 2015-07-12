@@ -1,10 +1,24 @@
 extends layout
 
 block head
+  link(id="code_style" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/ir_black.min.css")
   script(src='/javascripts/main.js')
 
 block content
+
+
   form(action="/submit", method="post")
+
     textarea#input(name="data")
-    input#submit(type="submit")
+    hidden#style(name="style")
+
+    #config
+      #configmenu.reqhover
+        h4 Configuration
+        label(for='codestyle') Code Style:
+        select#codestyle(type='select' name='codestyle')
+      #right
+        image#cog.config(src="/images/cog.svg")
+        input#submit.noborder(type="submit")
+
   #preview

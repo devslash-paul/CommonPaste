@@ -9,7 +9,8 @@ router.get('/', function(req, res, next) {
 
 router.post('/submit', function(req, res, next) {
   var paste = new Paste({
-    text: req.body.data
+    text: req.body.data,
+    css: req.body.codestyle
   });
 
   paste.save(function(err, doc){

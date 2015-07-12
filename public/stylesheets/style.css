@@ -55,13 +55,54 @@ p code {
   background-color: #E0E0E0;
 }
 
-#submit {
+#config {
   position: fixed;
   right: 50px;
   bottom: 20px;
+
+}
+
+.noborder {
   opacity: 10;
   border: 1px solid #c9c9c9;
   padding: 5px 25px;
+}
+
+.config {
+  vertical-align: bottom;
+  opacity: 0.2;
+  margin-right: 1em;
+
+  -webkit-transition-duration: 0.8s;
+  -moz-transition-duration: 0.8s;
+  -o-transition-duration: 0.8s;
+  transition-duration: 0.8s;
+
+  -webkit-transition-property: -webkit-transform;
+  -moz-transition-property: -moz-transform;
+  -o-transition-property: -o-transform;
+  transition-property: transform;
+}
+
+#configmenu {
+  margin-right: 15px;
+  display: none;
+  width:300px;
+
+  background: #F4F4F4;
+  padding: 6px;
+
+  color: #aaa;
+}
+
+#right {
+  float:right;
+}
+
+.config:hover {
+  -webkit-transform:rotate(60deg);
+  -moz-transform:rotate(60deg);
+  -o-transform:rotate(60deg);
 }
 
 #hiddenText {
@@ -72,11 +113,3 @@ p code {
   width: 50%;
   margin: auto;
 }
-
-/* 
-pre code{
-  display: inline-block;
-  background-color: #E0E0E0;
-  padding: 3px;
-  border-radius: 2px;
-} */

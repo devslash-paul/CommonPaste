@@ -8,5 +8,7 @@ function onLoad() {
     inp = document.getElementById("hiddenText")
     result = writer.render(reader.parse(inp.getAttribute("value")))
     document.getElementById('render').innerHTML = result
-    Prism.highlightAll();
+    $('pre code').each(function(i, block) {
+        hljs.highlightBlock(block);
+    });
 }
