@@ -10,11 +10,12 @@ describe('GET /', function () {
     })
 });
 
-describe("Push a paste", function() {
-    it("responded with a redirect 302", function(done) {
+describe("Push a paste", function () {
+    it("responded with a redirect 302", function (done) {
         request(app)
             .post("/submit")
-            .send({data:"I am the `input`", style:"ir-black"})
-            .expect(302, done)
+            .send({data: "I am the `input`", style: "ir-black"})
+            .expect(302)
+            .expect("Location", /p/, done)
     })
-})
+});
