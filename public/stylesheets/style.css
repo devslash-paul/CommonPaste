@@ -39,6 +39,7 @@ html, body {
 
 #render {
   padding-top: 25px;
+  height:100%
 }
 
 #input:focus{
