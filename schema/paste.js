@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-mongoose.set('debug', true);
+//mongoose.set('debug', true);
 
 var pasteSchema = mongoose.Schema({
     text: String,
