@@ -4,7 +4,7 @@ var Paste = require('../schema/paste.js')
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-    res.render('index', {title: 'CommonPaste - A CommonMark paste bin!'});
+    res.render('index', {title: 'CommonPaste - A CommonMark paste bin'});
 });
 
 function extractDatabaseHeading(req) {

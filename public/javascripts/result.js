@@ -11,4 +11,14 @@ function onLoad() {
     $('pre code').each(function(i, block) {
         hljs.highlightBlock(block);
     });
+
+    document.getElementById("shorturl").addEventListener("click", onShortLink, false);
 }
+
+function onShortLink() {
+    document.getElementById("popup").style.display = "block"
+    var input = document.getElementById("autoselect");
+    input.focus();
+    input.select();
+}
+

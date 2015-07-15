@@ -6,5 +6,9 @@ block head
 block content
     #hiddenText(value=text)
     #render
-    #shorturl
-        a(href=shorturl) short url
+    #other
+        #popup
+            p Short URL
+            input#autoselect(type=text, value=shorturl)
+        a#shorturl(href="javascript:void(0)") short url
+
