@@ -3,13 +3,22 @@ var router = express.Router();
 var Paste = require('../schema/paste.js')
 
 /* GET home page. */
-router.get('/:id', function(req, res, next) {
-    Paste.findById(req.params.id, function(err, doc){
-        if(err) return err
+router.get('/:year/:month/:day/:title', function(req, res, next) {
 
-        doc.title = "CommonPaste";
-        res.render("result", doc)
-    })
+    Paste.findOne({year:parseInt(req.params.year),
+                month:parseInt(req.params.month),
+                day:parseInt(req.params.day),
+                heading:req.params.title},
+
+        function(err, doc){
+
+            if(err) return err
+
+
+            doc.title = "CommonPaste";
+            res.render("result", doc)
+        }
+    )
 });
 
 module.exports = router;
