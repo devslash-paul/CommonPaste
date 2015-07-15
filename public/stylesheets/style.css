@@ -3,6 +3,8 @@ body {
 }
 
 * {
+  margin:0;
+  padding:0;
   box-sizing: border-box;
   word-wrap: break-word;
 }
@@ -11,6 +13,10 @@ html, body {
    height: 100%;
    margin:0;
    padding:0;
+}
+
+body {
+  padding-top:25px;
 }
 
 #preview {
@@ -112,4 +118,11 @@ p code {
 #render {
   width: 50%;
   margin: auto;
+}
+
+#shorturl {
+  position: absolute;
+  right: 50px;
+  bottom: 25px;
+  opacity: 0.4;
 }

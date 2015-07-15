@@ -1,6 +1,9 @@
 var express = require('express');
+var Hashids = require('hashids');
 var router = express.Router();
 var Paste = require('../schema/paste.js')
+
+var hashids = new Hashids("this is my salt")
 
 /* GET home page. */
 router.get('/:year/:month/:day/:title', function(req, res, next) {
@@ -14,8 +17,9 @@ router.get('/:year/:month/:day/:title', function(req, res, next) {
 
             if(err) return err
 
-
             doc.title = "CommonPaste";
+            doc.shorturl = "/s/" + hashids.encode(doc.createdOn.getTime());
+            console.log(doc.createdOn)
             res.render("result", doc)
         }
     )

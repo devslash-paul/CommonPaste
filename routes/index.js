@@ -20,7 +20,7 @@ function extractDatabaseHeading(req) {
     return heading;
 }
 
-function duplicateNumber(paste, callback) {
+function checkDuplicateKeys(paste, callback) {
     return "-" + Paste.count({
             year: paste.year, day: paste.day, month: paste.month,
             heading: new RegExp("^" + paste.heading + "(-\d+)?")
@@ -49,7 +49,7 @@ router.post('/submit', function (req, res, next) {
         heading: heading
     });
 
-    heading = heading + duplicateNumber(paste, function (err, result) {
+    checkDuplicateKeys(paste, function (err, result) {
             paste.save(function (err, doc) {
                 if (err) return err
 
