@@ -32,7 +32,7 @@ describe("Push a paste", function () {
             .expect(200)
             .expect(/autoselect/)
             .expect(function(res){
-                shortURL = $(res.text).find("#autoselect").attr('value');
+                shortURL = "/s/" + $(res.text).find("#autoselect").attr('value').split("/s/")[1];
             })
             .end(done)
     });

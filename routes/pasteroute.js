@@ -18,7 +18,7 @@ router.get('/:year/:month/:day/:title', function(req, res, next) {
             if(err) return err
 
             doc.title = "CommonPaste";
-            doc.shorturl = "/s/" + hashids.encode(doc.createdOn.getTime());
+            doc.shorturl = req.get("host") + "/s/" + hashids.encode(doc.createdOn.getTime());
             res.render("result", doc)
         }
     )
