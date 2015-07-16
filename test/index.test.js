@@ -18,4 +18,21 @@ describe("Push a paste", function () {
             .expect(302)
             .expect("Location", /p/, done)
     })
+
+    it("Has preceeding spaces that will get stripped", function (done) {
+        request(app)
+            .post('/submit')
+            .send({data: " Hello ", style: "ir-black"})
+            .expect(302)
+            .expect("Location", /\/hello(-\d+)?$/, done)
+    })
+
+    it("Has multiple internal spaces that get combined", function (done) {
+        request(app)
+            .post('/submit')
+            .send({data: " Hello   hello", style: "ir-black"})
+            .expect(302)
+            .expect("Location", /\/hello-hello(-\d+)?$/, done)
+
+    })
 });

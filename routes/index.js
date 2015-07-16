@@ -9,14 +9,16 @@ router.get('/', function (req, res, next) {
 
 function extractDatabaseHeading(req) {
     var heading = req.body.data.substr(0, 70);
-    heading = heading.replace(/ /g, "-");
+
     // If there's a new line then use that.
     var newLine = heading.indexOf("\n");
     if (newLine != -1) {
         heading = heading.substr(0, newLine);
     }
     heading = heading.toLowerCase();
-    heading = heading.replace(/[^abcdefghijklmnopqrstuvwxyz-]/g, "");
+    heading = heading.replace(/[^abcdefghijklmnopqrstuvwxyz ]/g, "").trim();
+    heading = heading.replace(/ /g, "-");
+    heading = heading.replace(/-+/g, "-");
     return heading;
 }
 
@@ -26,7 +28,6 @@ function checkDuplicateKeys(paste, callback) {
             heading: new RegExp("^" + paste.heading + "(-\d+)?")
         }, function (err, count)
     {
-        console.log("Count: " + count);
         if(count != 0)
             paste.heading += "-" + count
 
