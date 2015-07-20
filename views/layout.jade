@@ -2,13 +2,20 @@ doctype html
 html
   head
     title= title
+
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+
+    link(rel='stylesheet' href='/stylesheets/libraries/bootstrap.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
 
 
     script(src='/javascripts/commonmark.js')
     script(src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js")
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js")
+    script(src="/javascripts/libraries/bootstrap.min.js")
+
     block head
 
   body
-    block content
+    .container-fluid.totalheight
+      block content

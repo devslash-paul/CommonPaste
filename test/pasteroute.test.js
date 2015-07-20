@@ -44,9 +44,6 @@ describe("Push a paste", function () {
             .expect("Location", newURL, done)
     });
 
-
-
-
 });
 
 

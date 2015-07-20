@@ -1,14 +1,17 @@
 extends layout
 block head
-    script(src='/javascripts/result.js')
-    link(rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/"+css+".min.css")
+  script(src='/javascripts/result.js')
+  link(rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/" + css + ".min.css")
 
 block content
-    #hiddenText(value=text)
-    #render
-    #other
-        #popup
-            p Short URL
-            input#autoselect(type=text, value=shorturl)
-        a#shorturl(href="javascript:void(0)") short url
+  #hiddenText(value=text)
+  .row
+    #render.col-xs-12.col-sm-offset-3.col-sm-6
 
+  #other
+    #popup.popup
+      p Short URL
+      input#autoselect(type=text, value=shorturl)
+
+    a.bottomURL#edit(href="/" + _id) Edit
+    a.bottomURL#shorturl(href="javascript:void(0)") Short URL

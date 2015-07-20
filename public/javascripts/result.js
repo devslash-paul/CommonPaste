@@ -2,12 +2,14 @@ var reader = new commonmark.Parser();
 var writer = new commonmark.HtmlRenderer();
 var inp;
 var popup;
+var edit;
 
 document.addEventListener('DOMContentLoaded', onLoad, false);
 
 function onLoad() {
     inp = document.getElementById("hiddenText")
     popup = document.getElementById("popup");
+    edit = document.getElementById("password");
 
     result = writer.render(reader.parse(inp.getAttribute("value")))
     document.getElementById('render').innerHTML = result
@@ -16,6 +18,8 @@ function onLoad() {
     });
 
     document.getElementById("shorturl").addEventListener("click", onShortLink, false);
+    document.getElementById("edit").addEventListener("click", onEdit, false);
+
     registerBlurEvents()
 }
 
@@ -26,8 +30,13 @@ function onShortLink() {
     input.select();
 }
 
+function onEdit() {
+    edit.style.display = "block"
+}
+
 function doBlur() {
     popup.style.display = "none"
+    edit.style.display = "none"
 }
 
 function registerBlurEvents() {

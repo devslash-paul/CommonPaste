@@ -8,7 +8,8 @@ var pasteSchema = mongoose.Schema({
     month: Number,
     year: Number,
     heading: String,
-    createdOn: {type:Date, default: Date.now}
+    createdOn: {type:Date, default: Date.now},
+    password: String
 });
 
 var Paste = mongoose.model('paste', pasteSchema);

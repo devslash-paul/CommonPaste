@@ -18,6 +18,18 @@ html, body {
    padding:0;
 }
 
+label {
+  width:100px;
+  display:inline-block;
+}
+
+input[type="text"], select,
+input[type="password"]{
+  width:150px;
+}
+
+/*ID Based css*/
+
 #preview {
   padding:25px;
   background-color: #F9F9F9;
@@ -46,7 +58,7 @@ html, body {
   outline-width: 0;
 }
 
-form {
+.workform {
   display:inline-block;
   padding:25px;
   width:50%;
@@ -94,6 +106,15 @@ p code {
   transition-property: transform;
 }
 
+.inline-block {
+  display: inline-block;
+}
+
+.totalheight {
+  height: 100%;
+  padding:0;
+}
+
 #configmenu {
   margin-right: 15px;
   display: none;
@@ -106,7 +127,7 @@ p code {
 }
 
 #right {
-  float:right;
+  text-align:right;
 }
 
 .config:hover {
@@ -119,11 +140,6 @@ p code {
   display:none;
 }
 
-#render {
-  width: 50%;
-  margin: auto;
-}
-
 #other {
   position: absolute;
   right: 50px;
@@ -132,15 +148,16 @@ p code {
   float:right;
 }
 
-#popup {
+.popup {
   background: #c6c6c6;
   padding: 6px;
   border-radius: 10px;
   display: none;
 }
 
-#shorturl {
+.bottomURL {
   float:right;
+  margin-right:10px;
 }
 
 #arrow {

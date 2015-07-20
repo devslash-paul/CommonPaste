@@ -6,19 +6,40 @@ block head
 
 block content
 
-
-  form(action="/submit", method="post")
-
-    textarea#input(name="data")
+  form.workform(action="/submit", method="post" id='workform')
+    input(type='hidden' id='existingid' name='existingid' value=_id)
+    textarea#input(name="data") #{text}
     hidden#style(name="style")
 
     #config
-      #configmenu.reqhover
+      #configmenu.reqhover.inline-block
         h4 Configuration
         label(for='codestyle') Code Style:
         select#codestyle(type='select' name='codestyle')
-      #right
+        label(for='editpassword') Password
+        input(type='password' name='editpassword')
+      #right.inline-block
         image#cog.config(src="/images/cog.svg")
-        input#submit.noborder(type="submit")
+        input#sub.noborder(type="submit")
+
+      button.btn.btn-default.inline-block#save(type='button') Save
+
+  #savedialog.modal.bs-example-modal-lg(role='dialog')
+    .modal-dialog
+      .modal-content
+        .modal-header
+          h4 Save
+        .modal-body
+          p To update current paste enter the password
+          label(for='pass') Password
+          input(type='password' id='pass' name='editpassword')
+          button.pull-right#update(type="button" class="btn btn-primary" data-dismiss="modal") Update
+        .modal-footer
+          .text-center
+            button#savenew(type="button" class="btn btn-default" data-dismiss="modal") Save as New
+
+
+
+
 
   #preview
