@@ -84,7 +84,7 @@ router.post('/submit', function (req, res, next) {
                 res.redirect("/p/" + result.year + "/" + result.month + "/" + result.day + "/" + result.heading)
 
                 // If these was a password. Lets add it now
-                if (req.body.editpassword.length > 0) {
+                if (req.body.editpassword && req.body.editpassword.length> 0) {
                     bcrypt.genSalt(10, function (err, salt) {
                         bcrypt.hash(req.body.editpassword, salt, function (err, hash) {
                             // Store hash in your password DB.
