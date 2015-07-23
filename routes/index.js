@@ -46,30 +46,30 @@ router.post('/submit', function (req, res, next) {
         heading: heading,
     });
 
-    if (req.body.password && req.body.id) {
+
+    if (req.body.editpassword && req.body.id) {
         // Get by the ID and update the text after
         // checking the password.
 
         // get the password hash first
         Paste.findById(req.body.id, function (err, doc) {
             // If there's no password then we can't save
-            if (!doc.password) {
-                res.send(JSON.stringify({success: false}));
+            if (err || !doc.password) {
+                res.status(403).render("forbidden")
+                return next();
             }
 
             // we do have a password. So lets compare
-            bcrypt.compare(req.body.password, doc.password, function (err, hres) {
+            bcrypt.compare(req.body.editpassword, doc.password, function (err, hres) {
                 if (hres) {
                     doc.text = req.body.data;
-                    res.json({
-                        success: true,
-                        location: "/p/" + doc.year + "/" + doc.month + "/" + doc.day + "/" + doc.heading
-                    });
+                    res.redirect("/p/" + doc.year + "/" + doc.month + "/" + doc.day + "/" + doc.heading);
 
                     doc.save()
 
                 } else {
-                    res.send(JSON.stringify({success: false}))
+                    res.status(403).render("forbidden")
+                    return next();
                 }
             });
         });

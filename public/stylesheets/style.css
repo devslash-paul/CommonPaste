@@ -1,170 +1,217 @@
-body {  
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+body {
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 div {
-  margin:0;
-  padding:0;
+    margin: 0;
+    padding: 0;
 }
 
 * {
-  box-sizing: border-box;
-  word-wrap: break-word;
+    box-sizing: border-box;
+    word-wrap: break-word;
 }
 
 html, body {
-   height: 100%;
-   margin:0;
-   padding:0;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
 }
 
 label {
-  width:100px;
-  display:inline-block;
-}
-
-input[type="text"], select,
-input[type="password"]{
-  width:150px;
+    width: 100%;
+    display: inline-block;
+    padding-bottom: 5px;
+    padding-top: 10px;
 }
 
 /*ID Based css*/
 
 #preview {
-  padding:25px;
-  background-color: #F9F9F9;
-  height:100%;
-  min-height:100%;
-  width:50%;
-  max-height: 45%;
-  overflow-y: scroll;
-  display:inline-block;
-  vertical-align:top;
+    padding: 25px;
+    background-color: #F9F9F9;
+    height: 100%;
+    min-height: 100%;
+    width: 50%;
+    max-height: 45%;
+    overflow-y: scroll;
+    display: inline-block;
+    vertical-align: top;
 }
 
 #input {
-  resize: none;
-  height: 100%;
-  width: 100%;
-  border:none;
+    background:white;
+    padding:25px;
+    resize: none;
+    height: 100%;
+    width: 50%;
+    border: none;
+}
+
+input, select{
+    width:100%;
+    color:black;
 }
 
 #render {
-  padding-top: 25px;
-  height:100%
+    padding-top: 25px;
+    height: 100%
 }
 
-#input:focus{
-  outline-width: 0;
+#input:focus {
+    outline-width: 0;
 }
 
 .workform {
-  display:inline-block;
-  padding:25px;
-  width:50%;
-  height:100%;
+    display: inline-block;
+    /*padding: 25px;*/
+    padding:0;
+    width: 100%;
+    height: 100%;
 }
 
-blockquote{
-  background: #EDEDED;
-  border-left: 4px solid #ccc;
-  margin: 0.5em 10px;
-  padding: 1px 12px;
+blockquote {
+    background: #EDEDED;
+    border-left: 4px solid #ccc;
+    margin: 0.5em 10px;
+    padding: 1px 12px;
 }
 
 p code {
-  padding: 1px;
-  background-color: #E0E0E0;
+    padding: 1px;
+    background-color: #E0E0E0;
 }
 
 #config {
-  position: fixed;
-  right: 50px;
-  bottom: 20px;
+    position: fixed;
+    right: 50px;
+    bottom: 20px;
 
 }
 
 .noborder {
-  opacity: 10;
-  border: 1px solid #c9c9c9;
-  padding: 5px 25px;
+    opacity: 10;
+    border: 1px solid #c9c9c9;
+    padding: 5px 25px;
 }
 
 .config {
-  vertical-align: bottom;
-  opacity: 0.2;
-  margin-right: 1em;
+    vertical-align: bottom;
+    opacity: 0.2;
+    margin-right: 1em;
 
-  -webkit-transition-duration: 0.8s;
-  -moz-transition-duration: 0.8s;
-  -o-transition-duration: 0.8s;
-  transition-duration: 0.8s;
+    -webkit-transition-duration: 0.8s;
+    -moz-transition-duration: 0.8s;
+    -o-transition-duration: 0.8s;
+    transition-duration: 0.8s;
 
-  -webkit-transition-property: -webkit-transform;
-  -moz-transition-property: -moz-transform;
-  -o-transition-property: -o-transform;
-  transition-property: transform;
+    -webkit-transition-property: -webkit-transform;
+    -moz-transition-property: -moz-transform;
+    -o-transition-property: -o-transform;
+    transition-property: transform;
+}
+
+.sidebar {
+    display: inline-block;
+    position: absolute;
+    right: -300px;
+    width: 380px;
+    height: 100%;
+}
+
+.bottomPasteButton {
+    position: fixed;
+    bottom:0;
+    background-color: #222;
+    color:white;
+    width:80px;
+    border:none;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
 }
 
 .inline-block {
-  display: inline-block;
+    display: inline-block;
 }
 
 .totalheight {
-  height: 100%;
-  padding:0;
+    height: 100%;
+    padding: 0;
+    overflow-y: hidden;
 }
 
 #configmenu {
-  margin-right: 15px;
-  display: none;
-  width:300px;
+    margin-right: 15px;
+    display: none;
+    width: 300px;
 
-  background: #F4F4F4;
-  padding: 6px;
+    background: #F4F4F4;
+    padding: 6px;
 
-  color: #aaa;
+    color: #aaa;
 }
 
 #right {
-  text-align:right;
+    text-align: right;
 }
 
 .config:hover {
-  -webkit-transform:rotate(60deg);
-  -moz-transform:rotate(60deg);
-  -o-transform:rotate(60deg);
+    -webkit-transform: rotate(60deg);
+    -moz-transform: rotate(60deg);
+    -o-transform: rotate(60deg);
 }
 
 #hiddenText {
-  display:none;
+    display: none;
+}
+
+#shown{
+    width:80px;
+    display:inline-block;
+}
+
+#hiddenpart{
+    height:100%;
+    vertical-align: top;
+    background: #3A3A3A;
+    width:300px;
+    display:inline-block;
+    color:rgb(239, 239, 239);
+    padding:15px;
+}
+
+#hiddenpart h3 {
+    margin:0;
+    padding:0;
 }
 
 #other {
-  position: absolute;
-  right: 50px;
-  bottom: 25px;
-  opacity: 0.4;
-  float:right;
+    position: absolute;
+    right: 50px;
+    bottom: 25px;
+    opacity: 0.4;
+    float: right;
 }
 
 .popup {
-  background: #c6c6c6;
-  padding: 6px;
-  border-radius: 10px;
-  display: none;
+    background: #c6c6c6;
+    padding: 6px;
+    border-radius: 10px;
+    display: none;
 }
 
 .bottomURL {
-  float:right;
-  margin-right:10px;
+    float: right;
+    margin-right: 10px;
 }
 
 #arrow {
-  border-right: 5px solid transparent;
-  border-top: 5px solid black;
-  border-left: 5px solid transparent;
-  width: 0;
-  height: 0;
+    border-right: 5px solid transparent;
+    border-top: 5px solid black;
+    border-left: 5px solid transparent;
+    width: 0;
+    height: 0;
 
 }

@@ -2,6 +2,9 @@ var reader = new commonmark.Parser();
 var writer = new commonmark.HtmlRenderer();
 
 var start = "//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/";
+const updatePaste = "Update Existing Paste";
+
+var open = false;
 
 var inp;
 var code_css;
@@ -14,19 +17,59 @@ document.addEventListener('DOMContentLoaded', onLoad, false);
 document.addEventListener('keyup', updatePreview, false);
 
 
+function setupSidebar() {
+
+    $("#show").click(function () {
+        if (open) {
+            // Then lets submit
+            $("#workform").submit()
+        } else {
+            toggleBar()
+        }
+    });
+}
+
+function setSaveButton() {
+    if ($("#password").val().length > 0) {
+        $("#show").html(updatePaste)
+    }
+    else if ($("#existingid").val()) {
+        $("#show").html("Create New Paste");
+    }
+}
+function toggleBar() {
+
+    if (open) {
+        // Make sure it says save
+        $("#show").text("Save");
+    } else {
+        setSaveButton();
+    }
+
+    $("#sidebar").animate({
+        right: open ? -300 : 0,
+        width: open ? 380 : 300
+    }, 150);
+    $("#show").animate({
+        width: open ? 80 : 300,
+        right: 0
+    }, 150);
+    $("#shown").animate({
+        width: open ? 80 : 0
+    }, 150);
+    open = !open
+}
+
 function onLoad() {
 
     inp = document.getElementById("input");
     config = document.getElementById("configmenu");
     code_css = document.getElementById("code_style");
 
-    $("#cog").click(doShowConfigMenu);
-
     registerBlurEvents();
 
     // create the select
     codes = document.getElementById("codestyle");
-
     codes.addEventListener("change", onSelectCode, false);
 
     for (var i = 0; i < styles.length; i++) {
@@ -40,24 +83,29 @@ function onLoad() {
 
     updatePreview();
 
-    $("#save").click(onSave);
     $("#update").click(onUpdate);
     $("#savenew").click(onSaveNew);
+
+    setupSidebar();
+
+    $("#password").keyup(function(){
+        setSaveButton();
+    })
 }
 
 function onUpdate() {
     // When we save new.
     $.ajax({
-        url:"/submit",
-        type:"post",
+        url: "/submit",
+        type: "post",
         data: {
             password: $("#pass").val(),
-            id:$("#existingid").val(),
+            id: $("#existingid").val(),
             data: $("#input").val()
         },
-        success: function(data) {
+        success: function (data) {
             console.log(data.success)
-            if(data.success) {
+            if (data.success) {
                 window.location = data.location;
             }
         }
@@ -71,7 +119,7 @@ function onSaveNew() {
 
 function onSave() {
     // If we should save it then he's where we should d o
-    if($("#existingid").val()) {
+    if ($("#existingid").val()) {
         $("#savedialog").modal('show')
     }
     else {
@@ -92,12 +140,10 @@ function updatePreview() {
     });
 }
 
-function doShowConfigMenu() {
-    document.getElementById("configmenu").style.display = "block";
-}
-
 function doBlurConfigMenu() {
-    config.style.display = "none"
+    if (open) {
+        toggleBar()
+    }
 }
 
 function registerBlurEvents() {
