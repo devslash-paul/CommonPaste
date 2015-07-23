@@ -4,14 +4,14 @@ block head
   link(rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/" + css + ".min.css")
 
 block content
-  #hiddenText(value=text)   
-  div
-    #render.col-xs-12.col-sm-offset-3.col-sm-6
+  .container-fluid.full-height.scroll-all-height
+    #hiddenText(value=text)
+    #render.col-xs-12.col-sm-offset-3.col-sm-6.scroll
 
-  #other
-    #popup.popup
-      p Short URL
-      input#autoselect(type=text, value=shorturl)
+    #other
+      #popup.popup
+        p Short URL
+        input#autoselect(type=text, value=shorturl)
 
-    a.bottomURL#edit(href="/" + _id) Edit
-    a.bottomURL#shorturl(href="javascript:void(0)") Short URL
+      a.bottomURL#edit(href="/" + _id) Edit
+      a.bottomURL#shorturl(href="javascript:void(0)") Short URL
