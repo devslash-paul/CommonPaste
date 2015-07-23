@@ -42,8 +42,10 @@ function toggleBar() {
     if (open) {
         // Make sure it says save
         $("#show").text("Save");
+        $("#sidebar").css.height = ""
     } else {
         setSaveButton();
+        $("#sidebar").css.height = "100%"
     }
 
     $("#sidebar").animate({
