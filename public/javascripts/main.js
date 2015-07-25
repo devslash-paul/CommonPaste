@@ -42,16 +42,23 @@ function toggleBar() {
     if (open) {
         // Make sure it says save
         $("#show").text("Save");
-        $("#sidebar").height("0")
+
     } else {
         setSaveButton();
-        $("#sidebar").height("100%")
+        $("#hiddenpart").css("display", "inline-block")
+        $("#sidebar").css("height", "100%")
+        //$("#hiddenpart").css("width", "300")
+        //$("#hiddenpart").css("right", "-300")
     }
 
-    $("#sidebar").animate({
-        right: open ? -300 : 0,
-        width: open ? 380 : 300
-    }, 150);
+    $("#hiddenpart").animate({
+        right: open ? -300 : 0
+    }, 150, function(){
+        if(!open) {
+            $("#hiddenpart").css("display", "none")
+            $("#sidebar").css("height", "0")
+        }
+    });
     $("#show").animate({
         width: open ? 80 : 300,
         right: 0

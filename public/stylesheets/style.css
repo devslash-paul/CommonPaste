@@ -119,8 +119,9 @@ p code {
 .sidebar {
     display: inline-block;
     position: absolute;
-    right: -300px;
-    width: 380px;
+    right: 0px;
+    /*height:100%;*/
+    /*width: 380px;*/
 }
 
 .scroll-all-height {
@@ -189,7 +190,12 @@ p code {
 
 #shown{
     width:80px;
+    z-index: 10;
     display:inline-block;
+}
+
+#show{
+    z-index: 15;
 }
 
 #hiddenpart{
@@ -197,7 +203,9 @@ p code {
     vertical-align: top;
     background: #3A3A3A;
     width:300px;
-    display:inline-block;
+    right:-300px;
+    display:none;
+    position:absolute;
     color:rgb(239, 239, 239);
     padding:15px;
 }
