@@ -96,8 +96,6 @@ function onLoad() {
     $("#password").keyup(function () {
         setSaveButton();
     })
-
-    $("#hiddenpart").on("swiperight", doBlurConfigMenu)
 }
 
 function onSelectCode() {
