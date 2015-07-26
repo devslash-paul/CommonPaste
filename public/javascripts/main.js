@@ -6,16 +6,14 @@ const updatePaste = "Update Existing Paste";
 
 var open = false;
 
-var inp;
+var main_input;
 var code_css;
-var config;
 var codes;
 
 var styles = ["agate", "androidstudio", "arta", "ascetic", "atelier-cave.dark", "atelier-cave.light", "atelier-dune.dark", "atelier-dune.light", "atelier-estuary.dark", "atelier-estuary.light", "atelier-forest.dark", "atelier-forest.light", "atelier-heath.dark", "atelier-heath.light", "atelier-lakeside.dark", "atelier-lakeside.light", "atelier-plateau.dark", "atelier-plateau.light", "atelier-savanna.dark", "atelier-savanna.light", "atelier-seaside.dark", "atelier-seaside.light", "atelier-sulphurpool.dark", "atelier-sulphurpool.light", "brown_paper", "brown_papersq.png", "codepen-embed", "color-brewer", "dark", "darkula", "default", "docco", "far", "foundation", "github-gist", "github", "googlecode", "hybrid", "idea", "ir_black", "kimbie.dark", "kimbie.light", "magula", "mono-blue", "monokai", "monokai_sublime", "obsidian", "paraiso.dark", "paraiso.light", "pojoaque", "railscasts", "rainbow", "school_book", "school_book.png", "solarized_dark", "solarized_light", "sunburst", "tomorrow-night-blue", "tomorrow-night-bright", "tomorrow-night-eighties", "tomorrow-night", "tomorrow", "vs", "xcode", "zenburn"]
 
-document.addEventListener('DOMContentLoaded', onLoad, false);
+$(document).ready(onLoad);
 document.addEventListener('keyup', updatePreview, false);
-
 
 function setupSidebar() {
 
@@ -53,8 +51,8 @@ function toggleBar() {
 
     $("#hiddenpart").animate({
         right: open ? -300 : 0
-    }, 150, function(){
-        if(!open) {
+    }, 150, function () {
+        if (!open) {
             $("#hiddenpart").css("display", "none")
             $("#sidebar").css("height", "0")
         }
@@ -69,15 +67,7 @@ function toggleBar() {
     open = !open
 }
 
-function onLoad() {
-
-    inp = document.getElementById("input");
-    config = document.getElementById("configmenu");
-    code_css = document.getElementById("code_style");
-
-    registerBlurEvents();
-
-    // create the select
+function createCodeOption() {
     codes = document.getElementById("codestyle");
     codes.addEventListener("change", onSelectCode, false);
 
@@ -89,51 +79,25 @@ function onLoad() {
     }
 
     codes.value = "ir_black";
+}
+function onLoad() {
 
+    main_input = document.getElementById("input");
+    code_css = document.getElementById("code_style");
+
+    registerBlurEvents();
+
+    // create the select
+    createCodeOption();
     updatePreview();
-
-    $("#update").click(onUpdate);
-    $("#savenew").click(onSaveNew);
 
     setupSidebar();
 
-    $("#password").keyup(function(){
+    $("#password").keyup(function () {
         setSaveButton();
     })
-}
 
-function onUpdate() {
-    // When we save new.
-    $.ajax({
-        url: "/submit",
-        type: "post",
-        data: {
-            password: $("#pass").val(),
-            id: $("#existingid").val(),
-            data: $("#input").val()
-        },
-        success: function (data) {
-            console.log(data.success)
-            if (data.success) {
-                window.location = data.location;
-            }
-        }
-    })
-}
-
-function onSaveNew() {
-    // get the form and submit it
-    $("#workform").submit()
-}
-
-function onSave() {
-    // If we should save it then he's where we should d o
-    if ($("#existingid").val()) {
-        $("#savedialog").modal('show')
-    }
-    else {
-        $("#workform").submit();
-    }
+    $("#hiddenpart").on("swiperight", doBlurConfigMenu)
 }
 
 function onSelectCode() {
@@ -141,7 +105,7 @@ function onSelectCode() {
 }
 
 function updatePreview() {
-    result = writer.render(reader.parse(inp.value))
+    result = writer.render(reader.parse(main_input.value))
     document.getElementById('preview').innerHTML = result
     //Prism.highlightAll();
     $('pre code').each(function (i, block) {
