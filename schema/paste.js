@@ -9,7 +9,8 @@ var pasteSchema = mongoose.Schema({
     year: Number,
     heading: String,
     createdOn: {type:Date, default: Date.now},
-    password: String
+    password: String,
+    extensions: [{type:String}]
 });
 
 var Paste = mongoose.model('paste', pasteSchema);

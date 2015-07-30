@@ -1,6 +1,3 @@
-var reader = new commonmark.Parser();
-var writer = new commonmark.HtmlRenderer();
-
 var start = "//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/";
 const updatePaste = "Update Existing Paste";
 
@@ -9,10 +6,17 @@ var open = false;
 var main_input;
 var code_css;
 var codes;
+var md;
+
+var plugins = {
+    'emoji': false,
+    'tables': false
+};
 
 var styles = ["agate", "androidstudio", "arta", "ascetic", "atelier-cave.dark", "atelier-cave.light", "atelier-dune.dark", "atelier-dune.light", "atelier-estuary.dark", "atelier-estuary.light", "atelier-forest.dark", "atelier-forest.light", "atelier-heath.dark", "atelier-heath.light", "atelier-lakeside.dark", "atelier-lakeside.light", "atelier-plateau.dark", "atelier-plateau.light", "atelier-savanna.dark", "atelier-savanna.light", "atelier-seaside.dark", "atelier-seaside.light", "atelier-sulphurpool.dark", "atelier-sulphurpool.light", "brown_paper", "brown_papersq.png", "codepen-embed", "color-brewer", "dark", "darkula", "default", "docco", "far", "foundation", "github-gist", "github", "googlecode", "hybrid", "idea", "ir_black", "kimbie.dark", "kimbie.light", "magula", "mono-blue", "monokai", "monokai_sublime", "obsidian", "paraiso.dark", "paraiso.light", "pojoaque", "railscasts", "rainbow", "school_book", "school_book.png", "solarized_dark", "solarized_light", "sunburst", "tomorrow-night-blue", "tomorrow-night-bright", "tomorrow-night-eighties", "tomorrow-night", "tomorrow", "vs", "xcode", "zenburn"]
 
 $(document).ready(onLoad);
+
 document.addEventListener('keyup', updatePreview, false);
 
 function setupSidebar() {
@@ -80,16 +84,50 @@ function createCodeOption() {
 
     codes.value = "ir_black";
 }
+
+function updateRenderer() {
+    md = window.markdownit('commonmark', {
+        html: true,
+        linkify: true,
+    })
+
+    if(plugins['emoji']) {
+        md.use(window.markdownitEmoji);
+
+        md.renderer.rules.emoji = function (token, idx) {
+            return window.twemoji.parse(token[idx].content);
+        };
+    }
+    if(plugins['tables'])
+    {
+        md.enable('table')
+    }
+
+    updatePreview();
+}
+
+function registerExtensionEvents() {
+    $("#emoji").click(function (e) {
+        plugins["emoji"] = this.checked;
+        updateRenderer()
+    })
+    $("#tables").click(function() {
+        plugins['tables'] = this.checked
+        updateRenderer()
+    })
+}
+
 function onLoad() {
 
     main_input = document.getElementById("input");
     code_css = document.getElementById("code_style");
 
     registerBlurEvents();
+    registerExtensionEvents();
 
     // create the select
     createCodeOption();
-    updatePreview();
+    updateRenderer();
 
     setupSidebar();
 
@@ -104,7 +142,7 @@ function onSelectCode() {
 }
 
 function updatePreview() {
-    result = writer.render(reader.parse(main_input.value))
+    result = md.render((main_input.value));
     document.getElementById('preview').innerHTML = result
     //Prism.highlightAll();
     $('pre code').each(function (i, block) {

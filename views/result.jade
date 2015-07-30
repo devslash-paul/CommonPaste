@@ -3,6 +3,11 @@ block head
   script(src='/javascripts/result.js')
   link(rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/" + css + ".min.css")
 
+  script
+    | var ext = [];
+    -for(var i = 0; i < extensions.length; i++)
+      |  ext.push("#{extensions[i]}");
+
 block content
   .container-fluid.full-height.scroll-all-height
     #hiddenText(value=text)
@@ -15,3 +20,6 @@ block content
 
       a.bottomURL#edit(href="/" + _id) Edit
       a.bottomURL#shorturl(href="javascript:void(0)") Short URL
+
+
+

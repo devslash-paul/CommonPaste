@@ -31,10 +31,23 @@ function checkDuplicateKeys(paste, callback) {
 }
 
 /* Post to save the page */
+function extractExtensions(req) {
+    var res = [];
+
+    if(req.body.emoji) {
+        res.push('emoji')
+    }
+    if(req.body.tables) {
+        res.push('tables')
+    }
+    return res
+}
 router.post('/submit', function (req, res, next) {
     var x = new Date();
 
     var heading = extractDatabaseHeading(req);
+
+    var extensions = extractExtensions(req);
 
     //If we have a password then we should save it
     var paste = new Paste({
@@ -44,6 +57,7 @@ router.post('/submit', function (req, res, next) {
         month: x.getMonth() + 1,
         year: x.getYear() + 1900,
         heading: heading,
+        extensions: extensions
     });
 
 

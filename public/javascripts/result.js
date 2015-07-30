@@ -1,17 +1,39 @@
-var reader = new commonmark.Parser();
-var writer = new commonmark.HtmlRenderer();
+
 var inp;
 var popup;
 var edit;
 
+var md;
+
 document.addEventListener('DOMContentLoaded', onLoad, false);
 
+function updateRenderer() {
+    md = window.markdownit('commonmark', {
+        html: true,
+        linkify: true,
+    });
+
+    if(ext.indexOf('emoji') >= 0) {
+        md.use(window.markdownitEmoji);
+
+        md.renderer.rules.emoji = function (token, idx) {
+            return window.twemoji.parse(token[idx].content);
+        };
+    }
+    if(ext.indexOf('tables') >= 0)
+    {
+        md.enable('table')
+    }
+}
+
 function onLoad() {
+    updateRenderer();
+
     inp = document.getElementById("hiddenText")
     popup = document.getElementById("popup");
     edit = document.getElementById("password");
 
-    result = writer.render(reader.parse(inp.getAttribute("value")))
+    result = md.render(inp.getAttribute("value"));
     document.getElementById('render').innerHTML = result
     $('pre code').each(function(i, block) {
         hljs.highlightBlock(block);
